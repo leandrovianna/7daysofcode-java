@@ -98,18 +98,18 @@ public class Main {
 
     public static void main(String[] args) {
         String json = fetchData();
-        List<String> movies = extractMovies(json);
+        List<String> moviesJson = extractMovies(json);
 
-        List<String> titles = parseTitles(movies);
+        List<String> titles = parseTitles(moviesJson);
         titles.forEach(System.out::println);
 
-        List<String> urlImages = parseUrlImages(movies);
+        List<String> urlImages = parseUrlImages(moviesJson);
         urlImages.forEach(System.out::println);
 
-        List<String> years = parseYears(movies);
+        List<String> years = parseYears(moviesJson);
         years.forEach(System.out::println);
 
-        List<String> imdbRatings = parseImdbRatings(movies);
+        List<String> imdbRatings = parseImdbRatings(moviesJson);
         imdbRatings.forEach(System.out::println);
     }
 }
