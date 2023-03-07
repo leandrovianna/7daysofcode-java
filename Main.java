@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -81,6 +83,14 @@ public class Main {
         List<String> moviesJson = extractMovies(json);
 
         List<Movie> movies = parseMovies(moviesJson);
-        movies.forEach(System.out::println);
+
+        try {
+            Writer writer = new PrintWriter(System.out);
+            HTMLGenerator htmlGenerator = new HTMLGenerator(writer);
+            htmlGenerator.generate(movies);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
