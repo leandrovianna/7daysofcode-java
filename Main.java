@@ -62,54 +62,25 @@ public class Main {
         return "";
     }
 
-    private static List<String> parseTitles(List<String> movies) {
-        List<String> titles = new ArrayList<>();
+    private static List<Movie> parseMovies(List<String> moviesJson) {
+        List<Movie> movies = new ArrayList<>();
+        for (String movieJson : moviesJson) {
+            String title = extractJsonAttribute(movieJson, "title");
+            String urlImage = extractJsonAttribute(movieJson, "image");
+            double rating = Double.parseDouble(extractJsonAttribute(movieJson, "imDbRating"));
+            int year = Integer.parseInt(extractJsonAttribute(movieJson, "year"));
 
-        for (String movie : movies) {
-            titles.add(extractJsonAttribute(movie, "title"));
+            Movie movie = new Movie(title, urlImage, rating, year);
+            movies.add(movie);
         }
-
-        return titles;
-    }
-
-    private static List<String> parseUrlImages(List<String> movies) {
-        List<String> urlImages = new ArrayList<>();
-        for (String movie : movies) {
-            urlImages.add(extractJsonAttribute(movie, "image"));
-        }
-        return urlImages;
-    }
-
-    private static List<String> parseYears(List<String> movies) {
-        List<String> years = new ArrayList<>();
-        for (String movie : movies) {
-            years.add(extractJsonAttribute(movie, "year"));
-        }
-        return years;
-    }
-
-    private static List<String> parseImdbRatings(List<String> movies) {
-        List<String> imdbRatings = new ArrayList<>();
-        for (String movie : movies) {
-            imdbRatings.add(extractJsonAttribute(movie, "imDbRating"));
-        }
-        return imdbRatings;
+        return movies;
     }
 
     public static void main(String[] args) {
         String json = fetchData();
         List<String> moviesJson = extractMovies(json);
 
-        List<String> titles = parseTitles(moviesJson);
-        titles.forEach(System.out::println);
-
-        List<String> urlImages = parseUrlImages(moviesJson);
-        urlImages.forEach(System.out::println);
-
-        List<String> years = parseYears(moviesJson);
-        years.forEach(System.out::println);
-
-        List<String> imdbRatings = parseImdbRatings(moviesJson);
-        imdbRatings.forEach(System.out::println);
+        List<Movie> movies = parseMovies(moviesJson);
+        movies.forEach(System.out::println);
     }
 }
