@@ -10,7 +10,7 @@ public class HTMLGenerator {
         this.writer = writer;
     }
 
-    public void generate(List<Movie> movies) throws IOException {
+    public void generate(List<? extends Content> contents) throws IOException {
         this.writer.write(
                 """
                 <!doctype html>
@@ -37,9 +37,9 @@ public class HTMLGenerator {
                 </div>
                 """;
 
-        for (Movie movie : movies) {
+        for (Content content : contents) {
             final String listItemHtml = "<li>" +
-                    String.format(divTemplate, movie.title(), movie.urlImage(), movie.title(), movie.rating(), movie.year())
+                    String.format(divTemplate, content.title(), content.urlImage(), content.title(), content.rating(), content.year())
                     + "</li>";
             this.writer.write(listItemHtml);
         }

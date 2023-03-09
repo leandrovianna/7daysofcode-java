@@ -12,7 +12,7 @@ public class Main {
         List<Movie> movies = new ImdbMovieJsonParser(json).parse();
 
         try {
-            Writer writer = new PrintWriter(System.out);
+            Writer writer = new PrintWriter("content.html");
             HTMLGenerator htmlGenerator = new HTMLGenerator(writer);
             htmlGenerator.generate(movies);
             writer.close();

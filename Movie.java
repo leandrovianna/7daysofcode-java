@@ -4,4 +4,4 @@
  Usando record, pois facilita a escrita dessa classe.
  */
 
-public record Movie (String title, String urlImage, double rating, int year) {}
+public record Movie (String title, String urlImage, double rating, int year) implements Content {}
