@@ -4,4 +4,9 @@
  Usando record, pois facilita a escrita dessa classe.
  */
 
-public record Movie (String title, String urlImage, double rating, int year) implements Content {}
+public record Movie (String title, String urlImage, double rating, int year) implements Content, Comparable<Content> {
+    @Override
+    public int compareTo(Content other) {
+        return this.rating() < other.rating() ? -1 : 1;
+    }
+}
