@@ -3,4 +3,6 @@ public interface Content {
     String urlImage();
     double rating();
     int year();
+
+    String type();
 }

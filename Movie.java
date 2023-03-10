@@ -9,4 +9,9 @@ public record Movie (String title, String urlImage, double rating, int year) imp
     public int compareTo(Content other) {
         return this.rating() < other.rating() ? -1 : 1;
     }
+
+    @Override
+    public String type() {
+        return "Movie";
+    }
 }
