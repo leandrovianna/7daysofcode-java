@@ -7,7 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         String apiKey = System.getenv("IMDB_API_KEY");
-        String json = new ImdbApiClient(apiKey).getBody();
+        APIClient apiClient = new ImdbApiClient(apiKey);
+        String json = apiClient.getBody();
 
         List<Movie> movies = new ImdbMovieJsonParser(json).parse();
 

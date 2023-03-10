@@ -5,7 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ImdbApiClient {
+public class ImdbApiClient implements APIClient {
     private static final String IMDB_API_URL = "https://imdb-api.com/API/";
 
     private final String apiKey;
@@ -32,5 +32,10 @@ public class ImdbApiClient {
             e.printStackTrace();
             return "";
         }
+    }
+
+    @Override
+    public Class<? extends Content> type() {
+        return Movie.class;
     }
 }
